@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Transaction Details
+{% endblock title %}
+
+{% block balance %}
+    ${{ balance }}
+{% endblock balance %}
+
+{% block content %}
+    <section>
+        <div class="px-3">
+            <h1 class="mb-3">Transaction Details</h1>
+            {% load crispy_forms_tags %}
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+                    {{ form|crispy }}
+                    <div id="div_id_user" class="mb-3">
+                        <label for="id_user" class="form-label requiredField">User</label>
+                        <input type="text" name="user" value="{{ transaction.user }}" class="textinput form-control" disabled readonly id="id_user">
+                    </div>
+                    <div id="div_id_last_updated" class="mb-3">
+                        <label for="id_last_updated" class="form-label requiredField">Last Updated</label>
+                        <input type="text" name="last_updated" value="{{ transaction.last_updated }}" class="dateinput form-control" disabled readonly id="id_last_updated">
+                    </div>
+                {% if user.is_authenticated and user == transaction.user %}
+                    <button type="submit" class="btn btn-primary">Update Transaction</button>
+                    <a href="{% url 'transactions:delete_transaction' transaction.id %}" class="btn btn-danger">Delete Transaction</a>
+                {% endif %}
+            </form>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block js %}
+    <script>
+        $(function () {
+            $("#id_date").datepicker();
+        });
+    </script>
+{% endblock js %}

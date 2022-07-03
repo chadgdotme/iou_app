@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Forbidden!
+{% endblock title %}
+
+{% block balance %}
+    $4.03
+{% endblock balance %}
+
+{% block content %}
+    <section>
+        <div class="px-3">
+            <h1 class="mb-3">Forbidden!</h1>
+            <p class="mb-5">Nice try! Were you trying to hack my site?</p>
+            <p>
+                <a href="{% url 'transactions:index' %}" class="btn btn-primary">Go Home</a>
+            </p>
+        </div>
+    </section>
+{% endblock content %}

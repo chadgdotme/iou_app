@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Delete Transaction?
+{% endblock title %}
+
+{% block balance %}
+    ${{ balance }}
+{% endblock balance %}
+
+{% block content %}
+    <section>
+        <div class="px-3">
+            <h1 class="mb-3">Delete Transaction?</h1>
+            {% load crispy_forms_tags %}
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div id="div_id_user" class="mb-3">
+                    <label for="id_user" class="form-label requiredField">User</label>
+                    <input type="text" name="user" value="{{ transaction.user }}" class="textinput form-control" disabled readonly id="id_user">
+                </div>
+                <div id="div_id_last_updated" class="mb-3">
+                    <label for="id_last_updated" class="form-label requiredField">Last Updated</label>
+                    <input type="text" name="last_updated" value="{{ transaction.last_updated }}" class="dateinput form-control" disabled readonly id="id_last_updated">
+                </div>
+                {% if user.is_authenticated and user == transaction.user %}
+                    <a href="{% url 'transactions:transaction_details' transaction.id %}" class="btn btn-primary">Back</a>
+                    <button type="submit" class="btn btn-danger">Yes, Delete!</button>
+                {% endif %}
+            </form>
+        </div>
+    </section>
+{% endblock content %}

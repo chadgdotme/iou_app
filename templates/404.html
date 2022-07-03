@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Page Not Found
+{% endblock title %}
+
+{% block balance %}
+    $4.04
+{% endblock balance %}
+
+{% block content %}
+    <section>
+        <div class="px-3">
+            <h1 class="mb-3">Page Not Found!</h1>
+            <p class="mb-5">What in the world were you looking for?</p>
+            <p>
+                <a href="{% url 'transactions:index' %}" class="btn btn-primary">Go Home</a>
+            </p>
+        </div>
+    </section>
+{% endblock content %}

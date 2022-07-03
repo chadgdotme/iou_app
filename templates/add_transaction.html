@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Add Transaction
+{% endblock title %}
+
+{% block balance %}
+    ${{ balance }}
+{% endblock balance %}
+
+{% block content %}
+    <section>
+        <div class="px-3">
+            <h1 class="mb-3">Add Transaction</h1>
+            {% load crispy_forms_tags %}
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-primary">Add Transaction</button>
+            </form>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block js %}
+    <script>
+        $(function () {
+            $("#id_date").datepicker();
+        });
+    </script>
+{% endblock js %}
