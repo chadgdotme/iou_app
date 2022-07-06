@@ -79,7 +79,7 @@ class TransactionCreateView(
     LoginRequiredMixin, SuccessMessageMixin, generic.CreateView, Helper
 ):
     model = Transaction
-    fields = ("date", "description", "type", "amount", "notes")
+    form_class = TransactionForm
     template_name = "add_transaction.html"
     success_url = reverse_lazy("transactions:index")
     success_message = "Transaction added successfully!"
